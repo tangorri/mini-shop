@@ -6,3 +6,6 @@
 
 front/node_modules/
 back/node_modules/
+
+# fichier configuration base de données.
+/back/config/config.json
