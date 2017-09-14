@@ -26,14 +26,14 @@ app.use('/', index);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -43,4 +43,44 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+const sq = require('sequelize');
+
+const sequelize = new sq('minishop', 'root', '', {
+  host: 'localhost',
+  dialect: 'mysql',
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
+const User = sequelize.define('user',
+  {
+    id: { type: sq.INTEGER, autoIncrement: true, primaryKey: true },
+    email: { type: sq.STRING },
+    password: { type: sq.STRING }
+  }
+);
+
+const Cart = sequelize.define('cart', {
+    id: { type : sq.INTEGER, autoIncrement: true, primaryKey: true },
+  }
+);
+
+User.hasOne(Cart);
+Cart.belongsToMany(User, { through : 'user_cart'});
+
+User.sync();
+Cart.sync();
 module.exports = app;
