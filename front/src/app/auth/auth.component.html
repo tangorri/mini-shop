@@ -1,0 +1,11 @@
+<div>
+    <p>
+        <label>email : </label><br />
+        <input type="text" name="email" #email>
+    </p>
+    <p>
+        <label> password :</label> <br />
+        <input type="password" name="password" #password>
+    </p>
+    <button (click)="login(email.value, password.value)" class="submit">Login</button>
+</div>

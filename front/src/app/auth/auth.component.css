@@ -1,8 +1,9 @@
-form {
+:host>div {
     margin: 0 auto;
     width: 50%;
     margin-top: 7em;
     padding: 3em;
+    font: 1em;
     background-color: rgb(240, 240, 240);
     border-radius: 20px;
     text-align: start;
