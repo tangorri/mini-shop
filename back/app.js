@@ -10,6 +10,7 @@ const users = require('./routes/users');
 const products = require('./routes/products');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cart = require('./routes/carts');
 const app = express();
 
 // view engine setup
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/products', products);
+app.use('/cart', carts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

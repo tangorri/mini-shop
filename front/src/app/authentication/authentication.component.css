@@ -1,0 +1,29 @@
+form {
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 7em;
+    padding: 3em;
+    background-color: rgb(240, 240, 240);
+    border-radius: 20px;
+    text-align: start;
+}
+
+input {
+    margin-left: 25%;
+    height: 2em;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.submit {
+    font-size: 1.5em;
+    width: 50%;
+    margin-top: 2em;
+    background-color: rgb(150, 220, 150);
+}
+
+label {
+    display: block;
+    font-size: 1.5em;
+    text-align: center;
+}

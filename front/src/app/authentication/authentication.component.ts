@@ -12,4 +12,8 @@ export class AuthenticationComponent implements OnInit {
   ngOnInit() {
   }
 
+  login = (email: string, password: string): void => {
+    console.log('onsubmit');
+  }
+
 }
