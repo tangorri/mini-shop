@@ -43,12 +43,28 @@ Editez le fichier _[back/config/config.js]()_
 
 ```JavaScript
 ...
-  "development": {
-    "username": "mini-shop",
-    "password": "mini-shop",
-    "database": "mini-shop",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+ {
+    "development": {
+      "username": "root",
+      "password": "",
+      "database": "minishop",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+    "test": {
+      "username": "root",
+      "password": null,
+      "database": "database_test",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+    "production": {
+      "username": "root",
+      "password": null,
+      "database": "database_production",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    }
   }
 ...
 ```
@@ -61,4 +77,14 @@ npm install
 
 node_modules/.bin/sequelize db:migrate
 node_modules/.bin/sequelize db:seed:all
+```
+### Back end Authentification 
+  Base mongo DB
+  il faut spécifier le nom de la base dans le fichier 'db/mongoConfig.js'
+
+```Javascript
+  module.exports = {
+  'secret': 'longobnoxiouspassphrase',
+  'database': 'mongodb://localhost/saas-tutorial'
+};
 ```
