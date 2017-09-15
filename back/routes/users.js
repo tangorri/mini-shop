@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const User = require('../models').User;
+
+
+const getUsers = (req, res) => User.findAll()
+  .then(users => res.json(users));
+
+
+router
+  .get('/', getUsers);
 
 module.exports = router;
