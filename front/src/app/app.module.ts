@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { HttpModule } from '@angular/http';
+
+import { AuthService } from './auth/auth.service';
+
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { ProductComponent } from './product/product.component';
@@ -21,8 +25,9 @@ import { ProfileComponent } from './user/profile/profile.component';
   ],
   imports: [
     BrowserModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
