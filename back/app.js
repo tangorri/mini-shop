@@ -8,12 +8,24 @@ const bodyParser = require('body-parser');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const products = require('./routes/products');
-
+const mongoose = require('mongoose');
+const passport = require('passport');
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+
+// Connect to database
+mongoConfig = require('./db/mongoConfig.js')
+mongoose.connect(mongoConfig.database);
+// PASSPORT INIT
+// Initialize passport for use
+app.use(passport.initialize());
+// Bring in defined Passport Strategy
+require('./passport/passport')(passport);
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -47,44 +59,4 @@ app.use(function(err, req, res /*,next*/ ) {
   res.render('error');
 });
 
-
-const sq = require('sequelize');
-
-const sequelize = new sq('minishop', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql',
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  }
-});
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-
-const User = sequelize.define('user',
-  {
-    id: { type: sq.INTEGER, autoIncrement: true, primaryKey: true },
-    email: { type: sq.STRING },
-    password: { type: sq.STRING }
-  }
-);
-
-const Cart = sequelize.define('cart', {
-    id: { type : sq.INTEGER, autoIncrement: true, primaryKey: true },
-  }
-);
-
-User.hasOne(Cart);
-Cart.belongsToMany(User, { through : 'user_cart'});
-
-User.sync();
-Cart.sync();
 module.exports = app;
