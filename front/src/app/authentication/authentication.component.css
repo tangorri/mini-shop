@@ -1,0 +1,11 @@
+.form-field {
+  display: block;
+  padding: 10px;
+  margin:10px 0;
+  background-color: rgba(66,66,66,0.1);
+}
+form {
+  width : 40%;
+  margin: 0 auto;
+  border: 1px solid rgb(22,66,66);
+}
