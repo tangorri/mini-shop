@@ -8,13 +8,25 @@ const bodyParser = require('body-parser');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const products = require('./routes/products');
+const mongoose = require('mongoose');
+const passport = require('passport');
 const cart = require('./routes/carts');
-
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+
+// Connect to database
+mongoConfig = require('./db/mongoConfig.js')
+mongoose.connect(mongoConfig.database);
+// PASSPORT INIT
+// Initialize passport for use
+app.use(passport.initialize());
+// Bring in defined Passport Strategy
+require('./passport/passport')(passport);
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
